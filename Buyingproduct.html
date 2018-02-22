@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>MY LIB</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+     <script src="web3.js"></script>
+	 <script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+	<center>
+	 <h1 style="color:#E53935">ACCOUNT INFORMATION</h1>
+	<form>
+	<table border="1">
+	<tr style="color:#F4FF81"><td>PRODUCT TYPE:</td><td><select id="PRO">
+				      <option>Select Category</option>
+			              <option value="1" id="lorry">TRUCK</option>
+		                      <option value="2" id="bike">BIKE</option>
+		                      <option value="3" id="car">CAR</option>
+		                      <option value="4" id="suv">SUV</option>
+		                      </select></td></tr>
+	
+	<tr><td style="color:#F4FF81">CUSTOMER ACCOUNT ADDRESS:</td><td><input type="text" id="cusadd"></td></tr>
+	<tr><td style="color:#F4FF81">OWNER ADDRESS:</td><td><input type="text" id="ownadd"></td></tr>
+	<tr><td style="color:#F4FF81">ENTER THE TOKEN AMOUNT:</td><td><input type="text" id="Token"></td></tr>
+	<tr><td style="color:#F4FF81">ENTER THE  PRODUCT QUANTITY:</td><td><input type="text" id="prodoc"></td></tr>
+	<tr><td style="color:#F4FF81">CLICK TO BUY:</td><td><input type="button" id="buy" value="BUY"></td></tr>.
+	<tr><td style="color:#F4FF81">CLICK TO UPDATE:</td><td><input type="button" id="up" value="UPDATE"></td></tr>
+	</table>
+	</form>
+	</center>
+	<center>
+		<h1 style="color:#E53935"> First Buy the DostrixToken</h1>
+		<form>
+		<table border="1">
+		<tr><td style="color:#F4FF81">CLICK TO BUY THE DOSTRIX TOKEN:</td><td><input type="button" id="dostrix" value="DostriXToken"></td></tr>
+		</table>
+		</form>
+	</center>
+
+	<center>
+		<h1 style="color:#E53935"> Check The Account Balance</h1>
+		<form>
+			<table border="1">
+	
+				<tr>
+					<td style="color:#F4FF81">ACCOUNT ADDRESS OF CUSTOMER:</td>
+					<td>
+						<input type="text" id="ADDRD" />
+					</td>
+				</tr>
+				<td style="color:#F4FF81">CLICK TO SHOW:</td>
+				<td>
+					<input type="button" value="Check" id="Check" />
+				</td>
+				</tr>
+				<tr>
+					<td style="color:#F4FF81">TOKEN AMOUNT:</td>
+					<td>
+						<input type="text" id="Token" />
+					</td>
+				</tr>
+				</tr>
+			</table>
+		</form>
+	</center>
+	
+</body>
+<script>
+		
+	
+	var dostrix = document.getElementById('dostrix');
+	dostrix.addEventListener('click',function(){
+       	location.href = "BuyTokens.html";
+	
+     });
+	var PRODF;
+	function Transfer()
+	{
+	
+	  var cusadd = document.getElementById('cusadd').value;
+	  var ownadd = document.getElementById('ownadd').value;
+	  var Token =  document.getElementById('Token').value;
+	  var prodoc = document.getElementById('prodoc').value;
+	 
+	sybex.getTransferR(cusadd,ownadd,Token,function(error,result){
+            if (!error) {
+             
+              alert(result);
+	    
+        
+       
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	function  getPurchase(){
+		  var Pro = document.getElementById('PRO').value;
+	   
+		if( Pro ==1)
+		{	
+		   PRODF = "TRUCK";
+		}
+		else if(Pro == 2)
+		{
+		PRODF = "BIKE";
+		}
+		else if(Pro == 3)
+		{
+		PRODF = "CAR";
+		}
+		else if(Pro == 4)
+		{
+		PRODF == "SUV";
+		}
+	sybex.getPurchased(Pro,PRODF,cusadd,ownadd,Token, prodoc,function(error,result){
+            if (!error) {
+             
+              alert(result);
+	    
+        
+       
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+}
+
+	var buy = document.getElementById('buy');
+	buy.addEventListener('click',function(){
+       	Transfer();
+	});
+
+	var up = document.getElementById('up');
+	up.addEventListener('click',function(){
+       	 getPurchase();
+	});
+
+
+	function Checkbalance() {
+		var ADDRD = document.getElementById("ADDRD").value;
+		sybex.balanceOf(ADDRD, function (error, result) {
+			if (!error) {
+
+				document.getElementById("Token").value = result;
+
+
+
+
+			} else {
+
+
+				alert(result);
+
+			}
+		});
+	}
+
+
+
+
+	var Check = document.getElementById("Check");
+	Check.addEventListener('click', function () {
+		Checkbalance();
+
+	});
+</script>
+	
+</html>
