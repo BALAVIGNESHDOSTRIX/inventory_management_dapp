@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MY LIB</title>
+     <script src="web3.js"></script>
+     <script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+			<center>
+			<h1 style="color:#E53935">Stock Maintenance Department </h1>
+			</center>
+		<center>
+		<h1 style="color:#E53935">Stock Matching Search Pannel</h1>
+    <form>
+       <table border="1">
+		<tr><td style="color:#F4FF81">SEARCH REQUIREMENT TYPE:</td></td><td><input type="number" id="SNO"/></td></tr>
+		<tr><td style="color:#F4FF81">CLICK TO SEARCH:</td><td><input type="button" value="GetD "id="BUTS"/></td></tr>
+        <tr><td style="color:#F4FF81">PRODUCT TYPE:</td></td><td><input type="text" id="PST"/></td></tr>
+		<tr><td style="color:#F4FF81">PURCHASED PRODUCT WHEELS COUNT:</td></td><td><input type="text" id="PWST"/></td></tr>
+		<tr><td style="color:#F4FF81">PURCHASED STEEL TYPE STATUS:</td><td><input type="text" id="PMSL"/></td></tr>
+		<tr><td style="color:#F4FF81"> PURCHASED FUEL TANK COUNT:</td><td><input type="number" id="PWSY"/></td></tr>
+		<tr><td style="color:#F4FF81">PURCHASED BREAKING SYSTEM COUNT:</td><td><input type="text" id="PBS"/></td></tr>
+		<tr><td style="color:#F4FF81">PURCHASED ENGINE COUNT:</td><td><input type="number" id="PHP"/></td></tr>
+		<tr><td style="color:#F4FF81">CLICK TO REQUIREMENTS CHECKING:</td><td><input type="button" value="Check" id="RCK"/></td></tr>
+		<tr><td style="color:#F4FF81">STOCK FULFILD STATUS:</td><td><input type="text" id="Status"/></td></tr>
+		
+		
+        </table>
+        </form>
+		<center>
+		<h1 style="color:#E53935"> Proceed to Production Department</h1>
+	<form>
+	<table border="1">
+		<tr><td style="color:#F4FF81">CLICK TO PROCEED:</td></td><td><input type="button" id="PSCN" value="PROCEED TO PDC"/></td></tr>
+	</table>
+    </form>
+    </center>
+
+		<script>
+       function GetPRD() {
+            var SNO = document.getElementById('SNO').value;
+	var PNM;
+	if(SNO == 1)
+	{
+	PNM = "TRUCK";
+	}else if(SNO == 2)
+	{
+	PNM = "CAR";
+	}else if(SNO == 3)
+	{
+	PNM = "CAR";
+	}
+	else if(SNO == 4)
+	{
+	PNM = "SUV";
+	}
+            
+            
+            sybex.PTEV(SNO,function (error, result) {
+                                        if (!error) {
+                                        document.getElementById('PST').value = PNM;       
+                                        document.getElementById('PWST').value = result[0]; 
+					document.getElementById('PMSL').value = result[1] + ":"+ "Yes"; 
+					document.getElementById('PWSY').value = result[4]; 
+					document.getElementById('PBS').value = result[5]; 
+					document.getElementById('PHP').value = result[3]; 
+                                           
+                                        } else {
+                                            alert(result);
+                                        }
+                                    });
+}
+    var BUTS = document.getElementById('BUTS');
+    BUTS.addEventListener('click', function () {
+        GetPRD();
+    });
+   
+    
+
+		var PRWC;
+		var FUEL;
+		var Break;
+		var EngineCount;
+  	function Checking()
+	{
+		var SNO = document.getElementById('SNO').value;	
+            sybex.PTEV(SNO,function (error, result) {
+                                        if (!error) {
+                                          
+                                       	PRWC = result[0]; 
+					
+					FUEL = result[4]; 
+					Break = result[5]; 
+					EngineCount = result[3]; 
+                                           
+                                        } else {
+                                            alert(result);
+                                        }
+                                    });
+	}
+	function Evaluate()
+	{
+	 			var Wheel=document.getElementById('PWST').value; 
+					
+				var fuel = document.getElementById('PWSY').value; 
+				var breakk = document.getElementById('PBS').value; 
+				var engine = document.getElementById('PHP').value; 
+	if( Wheel == PRWC && fuel == FUEL && breakk == Break && engine == EngineCount)
+	{
+		document.getElementById('Status').value = "Stock is Satisfied";
+	}
+	else
+	{
+	 document.getElementById('Status').value = "Stock is Not-Satisfied";
+	}
+	}
+
+	var RCK = document.getElementById('RCK');
+    RCK.addEventListener('click', function () {
+       Checking();
+    });
+
+
+			RCK.onclick = setInterval(function () {
+                                         Evaluate()
+                                     
+                                    }, 10000);
+	
+  	var production;
+	function Production()
+	{
+	 production = document.getElementById('Status').value;
+		if(production == "Stock is Satisfied")
+		{
+			location.href = "Production.html";
+		}
+		else
+		{
+		alert("you cant enter into production ");
+		}
+	}
+var PSCN = document.getElementById('PSCN');
+    PSCN.addEventListener('click', function () {
+       Production();
+    });
+</script>
+</html>
