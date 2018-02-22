@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>MY LIB</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+     <script src="web3.js"></script>
+		<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+	<center>
+	 <h1 style="color:#E53935">Sales Department</h1>
+	<form>
+	<table border="1">
+	<tr><td style="color:#F4FF81">PRODUCT TYPE:</td><td><select>
+				      <option>Select Category</option>
+			              <option value="1" id="lorry">TRUCK</option>
+		                      <option value="2" id="bike">BIKE</option>
+		                      <option value="3" id="car">CAR</option>
+		                      <option value="4" id="suv">SUV</option>
+		                      </select></td></tr>
+	<tr><td style="color:#F4FF81">CLICK TO VIEW:</td><td><input type="button" id="PLDC" value="VIEW"/></td></tr>
+	<tr><td style="color:#F4FF81">ENGINE POWER(HP):</td><td><input type="number" id="ENP" /></td></tr>
+	<tr><td style="color:#F4FF81">MAX SPEED(KM):</td><td><input type="number" id="MAXS" /></td></tr>
+	<tr><td style="color:#F4FF81">WHEELS COUNT:</td><td><input type="number" id="WHeeL" /></td></tr>
+	<tr><td style="color:#F4FF81">FUEL TANK CAPACITY(Lit):</td><td><input type="number" id="Fuel" /></td></tr>
+	<tr><td style="color:#F4FF81">LOAD CAPACITY(Kg):</td><td><input type="number" id="ton" /></td></tr>
+	<tr><td style="color:#F4FF81">WARRENTY PERIOD:</td><td><input type="number" id="WAR" /></td></tr>
+	<tr><td style="color:#F4FF81">MADEUP MATERIAL:</td><td><input type="text" id="MAT" /></td></tr>
+	<tr><td style="color:#F4FF81">COMPANY MANUFACTURE:</td><td><input type="text" id="COM" /></td></tr>
+	<tr><td style="color:#F4FF81">BUYING USING RUPEES</td><td>BUYING USING DostriXToken </td></tr>
+	<tr><td style="color:#F4FF81">TOTAL COST IN (INR):</td><td>TOTAL COST IN TOKEN</td></tr>
+	<tr><td style="color:#F4FF81"><lable id="INR" style="color:red" ></lable></td><td><input id="ETH" type="text" /></td></tr>
+	<tr><td style="color:#F4FF81">CLICK TO BUY USING INR</td><td><input id="INRB" type="button" style="color:red" value="INR"></td></tr>
+	<tr><td style="color:#F4FF81">CLICK TO BUY USING TOKEN</td><td><input id="TOKB" type="button" style="color:green" value="TOKEN"></td></tr>
+	
+	</table>
+	</form>
+
+		
+            
+	
+	
+
+</body>
+<script>
+		
+			
+		function ShowFirst()
+		{
+		var SNO = document.querySelectorAll('select')[0].value;
+		sybex.PLN(SNO,function(error,result){
+            if (!error) {
+             
+              
+       //alert(result);
+       				
+		document.getElementById('MAXS').value = result[1];
+		document.getElementById('ton').value = result[0];
+		document.getElementById('WAR').value = result[2];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+		}
+	var PLDC = document.getElementById('PLDC');
+	PLDC.addEventListener('click',function(){
+       ShowFirst();
+	MoreD();
+     });
+	
+	function MoreD()
+	{
+	var SNO = document.querySelectorAll('select')[0].value;
+	
+	sybex.RPLN(SNO,function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+       				
+		document.getElementById('ENP').value = result[6];
+		document.getElementById('WHeeL').value = result[0];
+		document.getElementById('Fuel').value = result[3];
+		document.getElementById('COM').value = "DOSTRIX";
+                document.getElementById('INR').innerHTML = result[5];
+		document.getElementById('MAT').value = result[1];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+
+	function EtherValue()
+	{
+	var a = document.getElementById('INR').innerHTML;
+	var b = a / 100000;
+	document.getElementById('ETH').value = b;
+	}
+
+	PLDC.onclick = setInterval(function () {
+                                         EtherValue()
+                                     
+                                    }, 4000);
+		
+	var TOKB = document.getElementById('TOKB');
+	TOKB.addEventListener('click',function(){
+       	location.href = "BuyingProduct.html";
+	
+     });
+	
+	
+</script>
+</html>
