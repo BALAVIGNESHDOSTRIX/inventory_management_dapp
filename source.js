@@ -758,7 +758,7 @@ var sybexcon = web3.eth.contract([
 		"type": "function"
 	}
 ]);
-var sybex = sybexcon.at('0x989de92359e60fdadb9beb43535019dab3567c7c');
+var sybex = sybexcon.at('0x69f29b5c4b1a948a271fe1dbcba2e5089030d7b2');
     if (!web3.isConnected()) {
         console.log("Ok");
     } else {
