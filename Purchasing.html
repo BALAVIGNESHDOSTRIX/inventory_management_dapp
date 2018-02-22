@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MY LIB</title>
+     <script src="web3.js"></script>
+	<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+			<center>
+			<h1 style="color:#E53935"> Purchasing Department </h1>
+			</center>
+		<center>
+		<h1 style="color:#E53935">Stock Requirement Search Pannel</h1>
+    <form>
+       <table border="1">
+       <tr><td style="color:#F4FF81">SEARCH REQUIREMENT TYPE:</td></td><td><input type="number" id="SNO"/></td></tr>
+		<tr><td style="color:#F4FF81">CLICK TO SEARCH:</td><td><input type="button" value="GetD "id="BUTS"/></td></tr>
+        <tr><td style="color:#F4FF81">PRODUCT TYPE:</td></td><td><input type="text" id="RPST"/></td></tr>
+		<tr><td style="color:#F4FF81">REQUIRED PRODUCT WHEELS COUNT:</td></td><td><input type="text" id="RWST"/></td></tr>
+		<tr><td style="color:#F4FF81">RQUIRED STEEL TYPE STATUS:</td><td><input type="text" id="RMSL"/></td></tr>
+		<tr><td style="color:#F4FF81"> REQUIRED FUEL TANK COUNT:</td><td><input type="number" id="RWSY"/></td></tr>
+		<tr><td style="color:#F4FF81">REQUIRED BREAKING SYSTEM COUNT:</td><td><input type="text" id="RBS"/></td></tr>
+		<tr><td style="color:#F4FF81">REQUIRED ENGINE COUNT:</td><td><input type="number" id="RHP"/></td></tr>
+		
+		
+        </table>
+        </form>
+
+
+    <center>
+        <center>
+            <h1 style="color:#E53935"> Product Purchasing Details </h1>
+            <form>
+                <table border="1">
+                    <tr>
+                        <td style="color:#F4FF81">PRODUCT TYPE:</td>
+                        <td>
+                            <select id="vtype">
+                                <option>Select Category</option>
+                                <option value="1" id="lorry">TRUCK</option>
+                                <option value="2" id="bike">BIKE</option>
+                                <option value="3" id="car">CAR</option>
+                                <option value="4" id="suv">SUV</option>
+                            </select>
+                            <tr>
+                                <td style="color:#F4FF81">PRODUCT PURCHASED WHEELS COUNT:</td>
+                        </td>
+                        <td style="color:#F4FF81">
+                            <input type="number" id="PWST" />
+                        </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#F4FF81">PURCHASED STEEL TYPE:</td>
+                            <td>
+                                <select id="SteelT">
+                                    <option>Select Category</option>
+                                    <option value="StainLess" id="StainLess">StainLess</option>
+                                    <option value="Nikel-Alloy" id="Nikel-Alloy">Nikel-Alloy</option>
+                                    <option value="Titanium-Alloy" id="Titanium-Alloy">Titanium-Alloy</option>
+                                    <option value="Aluminium-Alloy" id="Aluminium-Alloy">Aluminium-Alloy</option>
+                                </select>
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td style="color:#F4FF81">PURCHASED SEEL QUALITY(%):</td>
+                            </td>
+                            <td style="color:#F4FF81">
+                                <input type="number" id="PMSS" />
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td style="color:#F4FF81" >PURCHASED ENGINE COUNT:</td>
+                            <td>
+                                <input type="number" id="PHPC" />
+                            </td>
+                        </tr>
+			 <tr>
+                            <td style="color:#F4FF81">PURCHASED FUELTANK COUNT:</td>
+                            <td>
+                                <input type="number" id="PFLC" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#F4FF81">PURCHASED BREAKING SYSTEM COUNT:</td>
+                            <td>
+                                <input type="number" id="PBSC" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#F4FF81">TOTAL WHEEL COST:</td>
+                            <td>
+                                <input type="number" id="TWCOST" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color:#F4FF81">TOTAL BREAKING SYSTEM COST:</td>
+                            <td style="color:#F4FF81">
+                                <input type="number" id="BSCOST" />
+                            </td>
+                        </tr>
+                        <td style="color:#F4FF81">TOTAL ENGINE COST:</td>
+                        <td>
+                            <input type="number" id="ENGCOST" />
+                        </td>
+                    </tr>
+                    <td style="color:#F4FF81">TOTAL SPENDED COST FOR ALL THINGS:</td>
+                    <td style="color:#F4FF81">
+                        <input type="number" id="TOTCOST" />
+                    </td>
+                    </tr>
+        
+                    <tr>
+                        <td style="color:#F4FF81">Click to Confirm</td>
+                        <td style="color:#F4FF81">
+                            <input type="button" id="RABUT" value="PROCEED" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </center>
+
+		<center>
+		<h1 style="color:#E53935"> Proceed to Stock Maintenance department</h1>
+	<form>
+	<table border="1">
+		<tr><td style="color:#F4FF81" >CLICK TO PROCEED:</td></td><td><input type="button" id="PSCN" value="PROCEED TO STK"/></td></tr>
+	</table>
+    </form>
+    </center>
+    
+        </body>
+        <script>
+                         function GetPURD() {
+                    var vtype = document.getElementById('vtype').value;
+                    var PWST = document.getElementById('PWST').value;
+                    var SteelT = document.getElementById('SteelT').value;
+                    var PMSS = document.getElementById('PMSS').value;
+                    var PHPC = document.getElementById('PHPC').value;
+                    var PBSC = document.getElementById('PBSC').value;
+                    var TWCOST = document.getElementById('TWCOST').value;
+                    var BSCOST = document.getElementById('BSCOST').value;
+                    var ENGCOST = document.getElementById('ENGCOST').value;
+                    var TOTCOST = document.getElementById('TOTCOST').value;
+		   var PFLC = document.getElementById('PFLC').value;
+                    sybex.GetPTD(vtype, PWST, SteelT, PMSS, PHPC, PBSC, TWCOST, BSCOST, ENGCOST, TOTCOST,PFLC, function (error, result) {
+                        if (!error) {
+                            alert(result);
+                        } else {
+                            alert(result);
+                        }
+                    });
+                }
+                var RABUT = document.getElementById('RABUT');
+                RABUT.addEventListener('click', function () {
+                    GetPURD();
+                });
+            
+                var typecount;
+                var wheelscount;
+                var steeltypests;
+                var fueltankcount;
+                var bscount;
+                var enginecount;
+                var wheelneedcount;
+                function GetImport() {
+                        var SNO = document.getElementById('SNO').value;
+                        
+                        sybex.PLN(SNO, function (error, result) {
+                            if (!error) {
+                              
+                               typecount = result[3];
+                            } else {
+                                alert(result);
+                            }
+                        });
+                    }
+                    var BUTS = document.getElementById('BUTS');
+                        BUTS.addEventListener('click', function () {
+                           GetImport();
+                            GetStock();
+                             GetRED();
+                             
+                        });
+                        function GetStock() {
+                                var SSNO = document.getElementById('SNO').value;
+                                var PNM;
+                                if (SSNO == 1) {
+                                    PNM = "TRUCK";
+                                } else if (SSNO == 2) {
+                                    PNM = "CAR";
+                                } else if (SSNO == 3) {
+                                    PNM = "CAR";
+                                }
+                                else if (SSNO == 4) {
+                                    PNM = "SUV";
+                                }
+                                sybex.SMTD(SSNO, function (error, result) {
+                                    if (!error) {
+                                        //	alert(result);
+                                        document.getElementById('RPST').value = PNM;
+                                        wheelscount = result[0];
+                                        steeltypests = result[1];
+                                        fueltankcount = result[2];
+                                        bscount= result[3];
+                                        enginecount= result[4];
+                                    } else {
+                                        alert(result);
+                                    }
+                                });
+                            }
+                            function GetRED() {
+                                    var SNO = document.getElementById('SNO').value;
+                                   
+                                    sybex.RPLN(SNO, function (error, result) {
+                                        if (!error) {
+                                           
+                                           wheelneedcount  = result[0];
+                                           
+                                        } else {
+                                            alert(result);
+                                        }
+                                    });
+                                }
+                                var totalwheels_count;
+                                 var requiredwheelscount;
+                                 var requirefueltankcount;
+                                 var requirefueltankcount;
+                                 var requirebreakingsystem;
+                                  var requireenginecount;
+                           
+                              BUTS.onclick =  setInterval(function () {
+                                          totalwheels_count = typecount * wheelneedcount;
+                                    requiredwheelscount = totalwheels_count - wheelscount;
+                                    requirefueltankcount = typecount - fueltankcount;
+                                    requirebreakingsystem = typecount - bscount;
+                                    requireenginecount = typecount - enginecount;
+                                    }, 6000);
+                             
+                                                                             
+                               
+                               BUTS.onclick = setInterval(function () {
+                                         if (document.getElementById('SNO').value != "") {
+                                         document.getElementById('RWST').value = requiredwheelscount;
+                                         document.getElementById('RMSL').value = steeltypests;
+                                         document.getElementById('RWSY').value = requirefueltankcount;
+                                         document.getElementById('RBS').value = requirebreakingsystem;
+                                         document.getElementById('RHP').value = requireenginecount;
+                                     }
+                                    }, 7000);
+		
+			var PSCN = document.getElementById('PSCN');
+	PSCN.addEventListener('click',function(){
+      location.href = "StockCheck.html";
+     });
+                            
+        </script>
+        </html>
