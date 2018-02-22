@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MY LIB</title>
+     <script src="web3.js"></script>
+	<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+			<center>
+			<h1 style="color:#64DD17"> Stock Maintanence Department </h1>
+			</center>
+		<center>
+		<h1 style="color:#F5F5F5"> Product Requirement Details</h1>
+    <form>
+       <table border="1">
+		<tr><td style="color:#FFEB3B">SEARCH PlANNED TYPE:</td></td><td><input type="number" id="SNO"/></td></tr>
+		<tr><td style="color:#FFEB3B">CLICK TO SEARCH:</td><td><input type="button" value="GetD "id="BUTS"/></td></tr>
+        	<tr><td style="color:#FFEB3B">PRODUCT TYPE:</td></td><td><input type="text" id="PST"/></td></tr>
+		<tr><td style="color:#FFEB3B">PRODUCT WHEELS:</td></td><td><input type="text" id="WST"/></td></tr>
+		<tr><td style="color:#FFEB3B">STEEL TYPE:</td><td><input type="text" id="MSL"/></td></tr>
+		<tr><td style="color:#FFEB3B">SEEL QUALITY(%):</td></td><td><input type="number" id="MSS"/></td></tr>
+		<tr><td style="color:#FFEB3B">FUEL TANK SIZE(Litr..):</td><td><input type="number" id="WSY"/></td></tr>
+		<tr><td style="color:#FFEB3B">BREAKING SYSTEM:</td><td><input type="text" id="BS"/></td></tr>
+		<tr><td style="color:#FFEB3B">POWER OF ENGINE(HP):</td><td><input type="number" id="HP"/></td></tr>
+		<tr><td style="color:#FFEB3B">COST PER VECHILE:</td><td><input type="number" id="CPV"/></td></tr>
+		<tr><td style="color:#FFEB3B">TOTAL PRODUCT COUNT:</td><td><input type="number" id="TPCC"/></td></tr>
+		
+		
+	 </table>
+    </form>
+	</center>
+	<center>
+		<h1  style="color:#F5F5F5"> Stock Search Panel</h1>
+		<form>
+			<table border="1">
+				<tr>
+					<td style="color:#FFEB3B">SEARCH REQUIREMENT TYPE:</td>
+					</td>
+					<td style="color:#FFEB3B">
+						<input type="number" id="SSNO" />
+					</td>
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">CLICK TO SEARCH:</td>
+					<td>
+						<input type="button" value="GetD " id="BUTSS" />
+					</td>
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">PRODUCT TYPE:</td>
+					</td>
+					<td>
+						<input type="text" id="PSTT" />
+					</td>
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">AVAILABLE PRODUCT WHEELS COUNT:</td>
+					</td>
+					<td>
+						<input type="text" id="AWST" />
+					</td>
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">RQUIRED STEEL TYPE AVAILABLE STATUS:</td>
+					<td>
+						<input type="text" id="AMSL" />
+					</td style="color:#FFEB3B">
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">AVAILABLE FUEL TANK COUNT:</td>
+					<td>
+						<input type="number" id="AWSY" />
+					</td>
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">AVAILABLE BREAKING SYSTEM COUNT:</td>
+					<td>
+						<input type="text" id="ABS" />
+					</td>
+				</tr>
+				<tr>
+					<td style="color:#FFEB3B">AVAILABLE ENGINE COUNT:</td>
+					<td>
+						<input type="number" id="AHP" />
+					</td>
+				</tr>
+	
+	
+			</table>
+		</form>
+	</center>
+	<center> 
+		<h1 style="color:#F5F5F5"> PROCEED TO PURCHASING DEPARTMENT </h1>
+			<form>
+	<table border="1">
+		<tr>
+			<td style="color:#F5F5F5">CLICK TO PROCEED:</td>
+			</td>
+			<td>
+				<input type="button" id="PQCD" value="PROCEED TO QCD" />
+			</td>
+		</tr>
+	</table>
+	</form>
+	</center>
+</body>
+<script>
+			function GetRED()
+	{
+		var SNO = document.getElementById('SNO').value;
+		var PNM;
+		if (SNO == 1) {
+			PNM = "TRUCK";
+		} else if (SNO == 2) {
+			PNM = "CAR";
+		} else if (SNO == 3) {
+			PNM = "CAR";
+		}
+		else if (SNO == 4) {
+			PNM = "SUV";
+		}
+		sybex.RPLN(SNO, function (error, result) {
+			if (!error) {
+                 
+				document.getElementById('PST').value = PNM;
+				document.getElementById('WST').value = result[0];
+				document.getElementById('MSL').value = result[1];
+				document.getElementById('MSS').value = result[2];
+				document.getElementById('WSY').value = result[3];
+				document.getElementById('BS').value = result[4];
+				document.getElementById('CPV').value = result[5];
+				document.getElementById('HP').value = result[6];
+			} else {
+				
+				alert(result);
+			}
+		});
+	}
+	function GetToC()
+	{
+		var SNO = document.getElementById('SNO').value;
+		sybex.PLN(SNO, function (error, result) {
+			if (!error) {
+					
+					document.getElementById('TPCC').value = result[3];
+				
+			} else {
+				alert(result);
+			}
+		});
+	}
+	var BUTS = document.getElementById('BUTS');
+		BUTS.addEventListener('click', function () {
+			GetRED();
+			GetToC();
+		});
+			var PQCD = document.getElementById('PQCD');
+				PQCD.addEventListener('click', function () {
+					location.href = "Purchasing.html";
+				});
+				function GetStock() {
+						var SSNO = document.getElementById('SSNO').value;
+						var PNM;
+						if (SSNO == 1) {
+							PNM = "TRUCK";
+						} else if (SSNO == 2) {
+							PNM = "CAR";
+						} else if (SSNO == 3) {
+							PNM = "CAR";
+						}
+						else if (SSNO == 4) {
+							PNM = "SUV";
+						}
+						sybex.SMTD(SSNO, function (error, result) {
+						if (!error) {
+						//	alert(result);
+							
+							document.getElementById('PSTT').value = PNM;
+							document.getElementById('AWST').value = result[0];
+							document.getElementById('AMSL').value = result[1];
+							document.getElementById('AWSY').value = result[2];
+							document.getElementById('ABS').value = result[3];
+							document.getElementById('AHP').value = result[4];
+							
+						} else {
+							alert(result);
+						}
+					});
+				}
+				var BUTSS = document.getElementById('BUTSS');
+					BUTSS.addEventListener('click', function () {
+						GetStock();
+					});
+</script>
+</html>
