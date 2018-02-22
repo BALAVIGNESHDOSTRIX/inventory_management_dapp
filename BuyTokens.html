@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>MY LIB</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	 <script src="web3.js"></script>
+	<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+	<center>
+	 <h1 style="color:#E53935"> DostriXToken</h1>
+	<form>
+	<table border="1">
+	<tr><td  style="color:#F4FF81">ACCOUNT ADDRESS OF CUSTOMER:</td><td><input type="text" id="ADDR"/></td></tr>
+	<tr><td  style="color:#F4FF81">ENTER THE ETHER AMOUNT:</td><td><input type="text" id="ETHER"/></td></tr>
+	<td  style="color:#F4FF81">CLICK TO BUY:</td><td><input type="button" value="BUY" id="Buy"/></td></tr>
+	</tr>
+	</table>
+	</form>
+
+		<center>
+	 <h1 style="color:#E53935"> Check The Account Balance</h1>
+	<form>
+	<table border="1">
+	
+	<tr><td  style="color:#F4FF81">ACCOUNT ADDRESS OF CUSTOMER:</td><td><input type="text" id="ADDRD"/></td></tr>
+	<td  style="color:#F4FF81">CLICK TO SHOW:</td><td><input type="button" value="Check" id="Check"/></td></tr>
+	<tr><td  style="color:#F4FF81">TOKEN AMOUNT:</td><td><input type="text" id="Token"/></td></tr>
+	</tr>
+	</table>
+	</form>
+	</center>
+</body>
+
+	<script>
+		
+		function Tokens()
+		{
+		web3.eth.defaultAccount = document.getElementById("ADDR").value;
+		var ETHER=document.getElementById("ETHER").value;
+		ETHER =web3.toWei(ETHER, "ether");
+		sybex.buytokens({value:ETHER}, function(err, result){ if(!err)alert(result); });	
+	}
+		var BUTS = document.getElementById("Buy");
+	BUTS.addEventListener('click',function(){
+       Tokens();
+     });
+
+		function Checkbalance()
+		{
+		var ADDRD = document.getElementById("ADDRD").value;
+		sybex.balanceOf(ADDRD,function(error,result){
+            if (!error) {
+             
+              document.getElementById("Token").value = result;
+	    
+        
+       
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+		}
+
+		
+		
+
+		var Check = document.getElementById("Check");
+	Check.addEventListener('click',function(){
+       Checkbalance();
+	
+     });
+	</script>
+</html>
