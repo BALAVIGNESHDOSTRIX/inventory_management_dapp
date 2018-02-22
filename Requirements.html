@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MY LIB</title>
+     <script src="web3.js"></script>
+		<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+			<center>
+			<h1 style="color:#64DD17"> Requirements Department </h1>
+			</center>
+		
+		<center>
+		<h1 style="color:#F5F5F5"> Planer Search Panel</h1>
+    <form>
+       <table border="1">
+		<tr><td style="color:#FFEB3B">SEARCH PLANNED TYPE:</td></td><td><input type="number" id="SNO"/></td></tr>
+		<tr><td style="color:#FFEB3B">CLICK TO SEARCH:</td><td><input type="button" value="GetD "id="BUTS"/></td></tr>
+        	<tr><td style="color:#FFEB3B">PRODUCT TYPE:</td></td><td><input type="text" id="PST"/></td></tr>
+		<tr><td style="color:#FFEB3B">WHEATHER TYPE:</td></td><td><input type="text" id="WST"/></td></tr>
+		<tr><td style="color:#FFEB3B">MAX LOAD VEC(Kg)</td><td><input type="number" id="MSL"/></td></tr>
+		<tr><td style="color:#FFEB3B">MAX SPEED VEC:</td></td><td><input type="number" id="MSS"/></td></tr>
+		<tr><td style="color:#FFEB3B">WARRENTY OF VEC</td><td><input type="number" id="WSY"/></td></tr>
+		<tr><td style="color:#FFEB3B">TARGET PRODUCTION COUNT:</td><td><input type="number" id="TPC"/></td></tr>
+       </table>
+    </form>
+    </center>
+		<center>
+		<h1 style="color:#F5F5F5"> ReQuirement Details</h1>
+    			<form>
+      			 <table border="1">
+				<tr><td style="color:#FFEB3B">PRODUCT TYPE:</td><td><select>
+				      <option>Select Category</option>
+			              <option value="1" id="lorry">TRUCK</option>
+		                      <option value="2" id="bike">BIKE</option>
+		                      <option value="3" id="car">CAR</option>
+		                      <option value="4" id="suv">SUV</option>
+		                      </select></td></tr>
+				<tr><td style="color:#FFEB3B">PRODUCT WHEELS:</td><td><input type="number" id="PHV"/></td></tr>
+				<tr><td style="color:#FFEB3B">STEEL TYPE:</td><td><select id="SteelT">
+				      <option>Select Category</option>
+			              <option value="StainLess" id="StainLess">StainLess</option>
+		                      <option value="Nikel-Alloy" id="Nikel-Alloy">Nikel-Alloy</option>
+		                      <option value="Titanium-Alloy" id="Titanium-Alloy">Titanium-Alloy</option>
+		                      <option value="Aluminium-Alloy" id="Aluminium-Alloy">Aluminium-Alloy</option>
+		                      </select></td></tr>
+				<tr><td style="color:#FFEB3B">STEEL Qt ISO(%):</td><td><input type="number" id="ISO"/></td></tr>
+				<tr><td style="color:#FFEB3B">FUEL TANK SIZE (Litr):</td><td><input type="number" id="LIT"/></td></tr>
+				<tr><td style="color:#FFEB3B">BREAKING SYSTEM:</td><td><select id="Break">
+				      <option>Select Category</option>
+			              <option value="ABS-Technology" id="ABS-Technology">ABS-Technology</option>
+		                      <option value="DBS-Technology" id="DBS-Technology">DBS-Technology</option>
+		                      <option value="AIBS-Technology" id="AIBS-Technology">AIBS-Technology</option>
+		                      <option value="OBS-Technology" id="Aluminium-Alloy">OBS-Technology</option>
+		                      </select></td></tr>
+				<tr><td style="color:#FFEB3B">POWER OF ENGINE(HP):</td><td><input type="number" id="ENHRP"/></td></tr>
+				<tr><td style="color:#FFEB3B">TOTAL PRODUCT COST PER PRODUCT:</td><td><input type="number" id="PTC"/></td></tr>
+				<tr><td style="color:#FFEB3B">Click to Confirm</td><td><input type="button" id="RABUT" value="PROCEED"/></td></tr>
+			 </table>
+			 </form>
+		</center>
+
+		<center style="color:#F44336">
+		<h1 style="color:yellow"> Proceed to Stock Maintenance department</h1>
+	<form>
+	<table border="1">
+		<tr><td>CLICK TO PROCEED:</td></td><td><input type="button" id="PDEN" value="PROCEED TO STK"/></td></tr>
+	</table>
+    </form>
+    </center>
+	
+</body>
+
+<script>
+			function ReqDUP()
+	{
+	var PDT = document.forms[1].querySelectorAll('select')[0].value;
+	var PHV = document.getElementById('PHV').value;
+	var SAT = document.getElementById('SteelT').value;
+	var ISO = document.getElementById('ISO').value;
+	var LIT = document.getElementById('LIT').value;
+	var Break = document.getElementById('Break').value;
+	var PTC = document.getElementById('PTC').value;
+	var ENHRP = document.getElementById('ENHRP').value;
+	sybex. GetRPLN(PDT,PHV,SAT,ISO,LIT,Break,PTC,ENHRP,function(error,result){
+            if (!error) {
+             
+              
+        alert(result);
+       
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	var RABUT = document.getElementById('RABUT');
+	RABUT.addEventListener('click',function(){
+       ReqDUP();
+     });
+	var PDEN = document.getElementById('PDEN');
+	PDEN.addEventListener('click',function(){
+       location.href = "Stock.html";
+     });
+	function GetPlanD()
+	{
+	var SNO = document.getElementById('SNO').value;
+	var PNM;
+	if(SNO == 1)
+	{
+	PNM = "TRUCK";
+	}else if(SNO == 2)
+	{
+	PNM = "CAR";
+	}else if(SNO == 3)
+	{
+	PNM = "CAR";
+	}
+	else if(SNO == 4)
+	{
+	PNM = "SUV";
+	}
+																									
+	sybex.PLN(SNO,function(error,result){
+            if (!error) {
+				
+           
+        document.getElementById('PST').value = PNM;      
+        document.getElementById('WST').value = result[4];
+	document.getElementById('MSL').value = result[0];
+	document.getElementById('MSS').value = result[1];
+	document.getElementById('WSY').value = result[2];  
+        document.getElementById('TPC').value = result[3];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+		
+}
+	
+	var BUTS = document.getElementById('BUTS');
+	BUTS.addEventListener('click',function(){
+       GetPlanD();
+     });
+</script>
+</html>
