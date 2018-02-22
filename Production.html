@@ -1,0 +1,149 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MY LIB</title>
+    <script src="web3.js"></script>
+	<script src="source.js"></script>
+</head>
+
+<body background="bgimage.jpg">
+	<center>
+    <h1 style="color:#E53935"> PRODUCTION DEPARTMENT </h1>
+	</center>
+
+    <center>
+        <h1 style="color:#E53935"> Enter the product details to production </h1>
+    <form>
+        <table border="1">
+		<tr><td style="color:#F4FF81">SEARCH PlANNED TYPE:</td></td><td><input type="number" id="SNO"/></td></tr>
+		<tr><td style="color:#F4FF81">CLICK TO SEARCH:</td><td><input type="button" value="GetD "id="BUTS"/></td></tr>
+		<tr><td style="color:#F4FF81">ENTER MAX LOAD(Kg)</td><td><input type="number" id="MXL"/></td></tr>
+		<tr><td style="color:#F4FF81">  PRODUCT PRODUCTION COUNT:</td><td><input type="number" id="TPMC"/></td></tr>
+		<tr><td style="color:#F4FF81">ENTER MAX SPEED(KM)</td><td><input type="number" id="MKM"/></td></tr>
+		<tr><td style="color:#F4FF81">BODY MATERIAL:</td><td><input type="text" id="BDM"/></td></tr>
+		<tr><td style="color:#F4FF81">POWER OF ENGINE(HP):</td><td><input type="number" id="ENHRP"/></td></tr>
+		<tr><td style="color:#F4FF81">WHEELS PER PRODUCT:</td><td><input type="number" id="WPP"/></td></tr>
+		<tr><td style="color:#F4FF81">CLICK TO PROCEED:</td><td><input type="button" value="PROCEED" id="PROCE"/></td></tr>
+		<tr><td style="color:#F4FF81">STATUS:</td><td><input type="text"  id="status"/></td></tr>
+	</table>
+  </form>
+		
+		<center>
+	 <h1 style="color:#E53935"> ENTER TO SALES DEAPRTMENT </h1>
+	<form>
+	<table border="1">
+		<tr>
+		<td style="color:#F4FF81">PROCCED TO CONFIRMATION: </td><td><input type="button" value="SALESD" id="EPRO"></td>
+		</tr>
+	</table>
+	</form>
+		</center>
+  </body>
+	<script>
+			
+	
+	function Production()
+	{
+	var SNO = document.getElementById('SNO').value;
+	 sybex.PLN(SNO,function(error,result){
+            if (!error) {
+             
+              
+        //alert(result);
+	
+       	document.getElementById('MXL').value = result[0];
+	document.getElementById('MKM').value = result[1];
+	document.getElementById('TPMC').value = result[3];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+      var PNMS;
+	function ProductionS()
+	{
+	var SNO = document.getElementById('SNO').value;
+	PNMS = SNO;
+	 sybex.RPLN(SNO,function(error,result){
+            if (!error) {
+             
+              
+        //alert(result);
+	
+       	document.getElementById('BDM').value = result[1];
+	document.getElementById('ENHRP').value = result[6];
+	document.getElementById('WPP').value = result[0];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+	function Made()
+	{
+         var a = document.getElementById('BDM').value;
+	 var b = document.getElementById('ENHRP').value;
+	 var c = document.getElementById('WPP').value; 
+	sybex.RPLN(PNMS,function(error,result){
+            if (!error) {
+             
+              if( a == result[1] && b == result[6] && c == result[0])
+		{
+		document.getElementById('status').value = "Success";
+		}
+		else
+		{
+		document.getElementById('status').value = "UnSuccess";
+		}
+       
+	
+       
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	var BUTS = document.getElementById('BUTS');
+	BUTS.addEventListener('click',function(){
+       Production();
+	ProductionS();
+     });
+	
+	var PROCE = document.getElementById('PROCE');
+	PROCE.addEventListener('click',function(){
+      Made();
+     });
+	function EVAL()
+	{
+	 var a = document.getElementById('status').value;
+	 if(a!="" && a =="Success")
+		{
+		location.href = "QualityControl.html";
+		}
+		else
+		{
+		alert("You can't Enter to Sales before Production Completed");
+		}
+	}
+	var EPRO =  document.getElementById('EPRO');
+	EPRO.addEventListener('click',function(){
+       EVAL();
+     });
+</script>
+  </html>
