@@ -1,0 +1,191 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MY LIB</title>
+    <script src="web3.js"></script>
+	 <script src="source.js"></script>
+</head>
+
+<body background="bgimage.jpg">
+	<center>
+    <h1 style="color:#E53935"> QUALITY CONTROL DEPARTMENT </h1>
+	</center>
+    <center>
+        <h1 style="color:#E53935"> PRODUCTION MATRIAL DETAILS </h1>
+    <form>
+        <table border="1">
+            <tr>
+                <td style="color:#F4FF81">SEARCH PlANNED TYPE:</td>
+                </td>
+                <td style="color:#F4FF81">
+                    <input type="number" id="SNO" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color:#F4FF81">CLICK TO SEARCH:</td>
+                <td >
+                    <input type="button" value="GetD " id="BUTS" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color:#F4FF81">PRODUCT TYPE:</td>
+                </td>
+                <td >
+                    <input type="text" id="PST" />
+                </td>
+            </tr>
+            <tr>
+                <td style="color:#F4FF81">PRODUCT  WHEELS COUNT:</td>
+                </td>
+                <td>
+                    <input type="number" id="PWST" />
+                </td>
+            </tr>
+            <tr>
+                <tr>
+                    <td style="color:#F4FF81"> PRODUCT STEEL TYPE:</td>
+                    </td>
+                    <td>
+                        <input type="text" id="PWSST" />
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                        <td style="color:#F4FF81">PRODUCT SEEL QUALITY(%):</td>
+                        </td>
+                        <td>
+                            <input type="number" id="PMSS" />
+                        </td>
+                    </tr>
+                    
+                    <tr>
+		
+                        
+
+        </table>
+
+    </form>
+    </center>
+
+		<center>
+	 <h1 style="color:#E53935"> CHECKING INSPECTOR EVALUATION</h1>
+	<form>
+	<table border="1">
+		<tr>
+                <td style="color:#F4FF81">EVALUATE THE PURCHASED MATERIALS QUALITY:</td>
+                <td>
+                    <input type="button" value="EVALUATE " id="EVALV" />
+                </td>
+		
+            </tr>
+		<tr>
+		<td style="color:#F4FF81">GRADE:</td><td><input type="text" value="" id="grade"></td>
+	</tr>
+		<tr>
+		<td style="color:#F4FF81">APPROVEL FOR PRODUCTION:</td><td><input type="text" id="APO"></td>
+		</tr>
+		
+		
+		
+		
+	</table>
+	</form>
+	</center>
+	</form>
+			
+		<center>
+	 <h1 style="color:#E53935"> ENTER TO PRODUCTION DEPARTMENT </h1>
+	<form>
+	<table border="1">
+		<tr>
+		<td style="color:#F4FF81">PROCCED TO CONFIRMATION: </td><td><input type="button" value="ProductD" id="EPRO"></td>
+		</tr>
+	</table>
+	</form>
+</body>
+<script>
+   function GetPRD() {
+            var SNO = document.getElementById('SNO').value;
+            var PNM;
+            if (SNO == 1) {
+                PNM = "TRUCK";
+            } else if (SNO == 2) {
+                PNM = "CAR";
+            } else if (SNO == 3) {
+                PNM = "CAR";
+            }
+            else if (SNO == 4) {
+                PNM = "SUV";
+            }
+            sybex.PTEV(SNO, function (error, result) {
+            if (!error) {
+                
+                document.getElementById('PST').value = PNM; 
+		 document.getElementById('PWST').value = result[0];
+		document.getElementById('PWSST').value  = result[1];  
+		document.getElementById('PMSS').value  = result[2];
+		
+		
+            } else {
+                alert(result);
+            }
+        });
+}
+    var BUTS = document.getElementById('BUTS');
+    BUTS.addEventListener('click', function () {
+        GetPRD();
+    });
+		function Evaluation()
+		{
+		var a = document.getElementById('PMSS').value;
+		var SNO = document.getElementById('SNO').value;
+		sybex.CEAC(SNO,function(error,result){
+            if (!error) {
+             
+              
+       			if(result[1] <= a)
+				{
+				document.getElementById('grade').value = "A";
+				document.getElementById('APO').value = "APPROVED";
+				
+				}else if( a < result[1])
+				{
+				document.getElementById('grade').value = "B";
+				document.getElementById('APO').value = "UN-APPROVED";
+				}
+				
+				
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+		}
+		function ProD()
+		{
+		var c = document.getElementById('APO').value;
+		if( c != "" && c == "APPROVED")
+			{
+			location.href = "Sales.html";
+			}else if(c == "UN-APPROVED")
+			{
+			alert("Warning your not approved to may Proceed");
+			}
+		}
+		var EVALV  = document.getElementById('EVALV');
+		EVALV.addEventListener('click', function () {
+        Evaluation();
+    });
+  		var EPRO  = document.getElementById('EPRO');
+		EPRO.addEventListener('click', function () {
+        ProD();
+    });
+		
+    </script>
+</html>
