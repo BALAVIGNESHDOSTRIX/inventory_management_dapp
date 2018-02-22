@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MY LIB</title>
+     <script src="web3.js"></script>
+    </head>
+<body background="bgimage.jpg">
+	<center> <h1 style="color:chartreuse"><blink>DOSTRIX</blink></h1></center>
+	<center>
+	<h1 style="color:#E53935"> ADMIN LOGIN PANEL</h1>
+	<form>
+	<table border="1">
+      <tr><td style="color:#F4FF81">USERNAME:</td><td><input type="text" placeholder="name" id="UN"/></td></tr>
+      <tr><td style="color:#F4FF81">PASSWORD:</td><td><input type="password" placeholder="password" id="PS"/></td></tr>
+      <tr><td><input type="button" value="Login" id="butV"/></td></tr>
+	</table>
+    	</form>
+	</center>
+</body>
+
+<script>
+	document.getElementById("butV").onclick = function () {
+	var UNN = "admin";
+	var PAS = "1234";
+	var UN = document.forms[0].querySelectorAll('input')[0].value;
+	var PS = document.forms[0].querySelectorAll('input')[1].value;
+        
+	if(UNN == UN && PAS == PS)
+		{
+		location.href = "Planning.html";
+		}
+		else
+		{
+		alert("Error");
+		}
+        
+    };
+	
+</script>
+</html>
