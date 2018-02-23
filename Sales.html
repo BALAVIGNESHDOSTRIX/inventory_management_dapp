@@ -9,6 +9,7 @@
 		<script src="source.js"></script>
     </head>
 <body background="bgimage.jpg">
+		<center> <h1 style="color:chartreuse"><blink>DOSTRIX</blink></h1></center>
 	<center>
 	 <h1 style="color:#E53935">Sales Department</h1>
 	<form>
@@ -29,14 +30,27 @@
 	<tr><td style="color:#F4FF81">WARRENTY PERIOD:</td><td><input type="number" id="WAR" /></td></tr>
 	<tr><td style="color:#F4FF81">MADEUP MATERIAL:</td><td><input type="text" id="MAT" /></td></tr>
 	<tr><td style="color:#F4FF81">COMPANY MANUFACTURE:</td><td><input type="text" id="COM" /></td></tr>
-	<tr><td style="color:#F4FF81">BUYING USING RUPEES</td><td>BUYING USING DostriXToken </td></tr>
-	<tr><td style="color:#F4FF81">TOTAL COST IN (INR):</td><td>TOTAL COST IN TOKEN</td></tr>
+	<tr><td style="color:#F4FF81">BUYING USING RUPEES</td><td style="color:#F4FF81">BUYING USING DostriXToken </td></tr>
+	<tr><td style="color:#F4FF81">TOTAL COST IN (INR):</td><td style="color:#F4FF81">TOTAL COST IN TOKEN</td></tr>
 	<tr><td style="color:#F4FF81"><lable id="INR" style="color:red" ></lable></td><td><input id="ETH" type="text" /></td></tr>
 	<tr><td style="color:#F4FF81">CLICK TO BUY USING INR</td><td><input id="INRB" type="button" style="color:red" value="INR"></td></tr>
 	<tr><td style="color:#F4FF81">CLICK TO BUY USING TOKEN</td><td><input id="TOKB" type="button" style="color:green" value="TOKEN"></td></tr>
 	
 	</table>
 	</form>
+
+		<center>
+			<h1 style="color:chartreuse">TOTAL AVAILABLE PRODUCT DETAILS</h1>
+			<form>
+			<table border="1">
+			<tr><td style="color:#F4FF81">AVILABLE TRUCKS:</td> <td><input type="text" id="trucktxt" ></td></tr>
+			<tr><td style="color:#F4FF81">AVILABLE BIKES:</td> <td><input type="text" id="biketxt" ></td></tr>
+			<tr><td style="color:#F4FF81">AVILABLE CARS:</td> <td><input type="text" id="cartxt" ></td></tr>
+			<tr><td style="color:#F4FF81">AVILABLE SUV:</td> <td><input type="text" id="suvtxt" ></td></tr>
+		</table>
+		</form>
+		</center>
+	
 
 		
             
@@ -99,14 +113,12 @@
             }
         });
 	}
-
 	function EtherValue()
 	{
 	var a = document.getElementById('INR').innerHTML;
 	var b = a / 100000;
 	document.getElementById('ETH').value = b;
 	}
-
 	PLDC.onclick = setInterval(function () {
                                          EtherValue()
                                      
@@ -117,6 +129,99 @@
        	location.href = "BuyingProduct.html";
 	
      });
+
+	function gettruckD()
+	{
+	 sybex.gettruckQT(function(error,result){
+            if (!error) {
+             
+              
+    // alert(result);
+   
+       		document.getElementById('trucktxt').value = result;		
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+	
+		var a ;
+
+		function getcarD()
+	{
+	 sybex.getCarQT(function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+   		 a = result;
+       		document.getElementById('cartxt').value = a;
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+	var b;
+
+		function getbikeD()
+	{
+	 sybex.getBikeQT(function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+   		 b = result;
+       		document.getElementById('biketxt').value = b;
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+		
+		var c;
+		function getsuvD()
+	{
+	 sybex.getSuvQT(function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+   		 c = result;
+       		document.getElementById('suvtxt').value = c;
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+	
+
+getcarD();
+gettruckD();
+getbikeD();
+getsuvD();
 	
 	
 </script>
