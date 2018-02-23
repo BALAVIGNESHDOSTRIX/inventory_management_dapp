@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>INVENTORY MANAGEMNT</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+     <script src="web3.js"></script>
+		<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+		<center> <h1 style="color:chartreuse"><blink>DOSTRIX</blink></h1></center>
+	<center>
+	 <h1 style="color:#E53935">PRODUCT DETAILS</h1>
+	<form>
+	<table border="1">
+	<tr><td style="color:#F4FF81">PRODUCT TYPE:</td><td><select>
+				      <option>Select Category</option>
+			              <option value="1" id="lorry">TRUCK</option>
+		                      <option value="2" id="bike">BIKE</option>
+		                      <option value="3" id="car">CAR</option>
+		                      <option value="4" id="suv">SUV</option>
+		                      </select></td></tr>
+	<tr><td style="color:#F4FF81">CLICK TO VIEW:</td><td><input type="button" id="PLDC" value="VIEW"/></td></tr>
+	<tr><td style="color:#F4FF81">ENGINE POWER(HP):</td><td><input type="number" id="ENP" /></td></tr>
+	<tr><td style="color:#F4FF81">MAX SPEED(KM):</td><td><input type="number" id="MAXS" /></td></tr>
+	<tr><td style="color:#F4FF81">WHEELS COUNT:</td><td><input type="number" id="WHeeL" /></td></tr>
+	<tr><td style="color:#F4FF81">FUEL TANK CAPACITY(Lit):</td><td><input type="number" id="Fuel" /></td></tr>
+	<tr><td style="color:#F4FF81">LOAD CAPACITY(Kg):</td><td><input type="number" id="ton" /></td></tr>
+	<tr><td style="color:#F4FF81">WARRENTY PERIOD:</td><td><input type="number" id="WAR" /></td></tr>
+	<tr><td style="color:#F4FF81">MADEUP MATERIAL:</td><td><input type="text" id="MAT" /></td></tr>
+	<tr><td style="color:#F4FF81">COMPANY MANUFACTURE:</td><td><input type="text" id="COM" /></td></tr>
+	
+	
+	
+	
+	</table>
+	</form>
+
+		<center>
+			<h1 style="color:chartreuse">TOTAL AVAILABLE PRODUCT DETAILS</h1>
+			<form>
+			<table border="1">
+			<tr><td style="color:#F4FF81">AVILABLE TRUCKS:</td> <td><input type="text" id="trucktxt" ></td></tr>
+			<tr><td style="color:#F4FF81">AVILABLE BIKES:</td> <td><input type="text" id="biketxt" ></td></tr>
+			<tr><td style="color:#F4FF81">AVILABLE CARS:</td> <td><input type="text" id="cartxt" ></td></tr>
+			<tr><td style="color:#F4FF81">AVILABLE SUV:</td> <td><input type="text" id="suvtxt" ></td></tr>
+		</table>
+		</form>
+		</center>
+	<center>
+		<from>
+		<table border="1">
+		<tr><td style="color:#F4FF81">BACK TO ADMIN PAGE:</td><td><input type="button" id="back" value="BACK"></td></tr>
+		</table>
+		</form>
+		</center>
+
+		
+            
+	
+	
+
+</body>
+<script>
+		
+			
+		function ShowFirst()
+		{
+		var SNO = document.querySelectorAll('select')[0].value;
+		sybex.PLN(SNO,function(error,result){
+            if (!error) {
+             
+              
+       //alert(result);
+       				
+		document.getElementById('MAXS').value = result[1];
+		document.getElementById('ton').value = result[0];
+		document.getElementById('WAR').value = result[2];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+		}
+	var PLDC = document.getElementById('PLDC');
+	PLDC.addEventListener('click',function(){
+       ShowFirst();
+	MoreD();
+     });
+	
+	function MoreD()
+	{
+	var SNO = document.querySelectorAll('select')[0].value;
+	
+	sybex.RPLN(SNO,function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+       				
+		document.getElementById('ENP').value = result[6];
+		document.getElementById('WHeeL').value = result[0];
+		document.getElementById('Fuel').value = result[3];
+		document.getElementById('COM').value = "DOSTRIX";
+               
+		document.getElementById('MAT').value = result[1];
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+
+	function gettruckD()
+	{
+	 sybex.gettruckQT(function(error,result){
+            if (!error) {
+             
+              
+    // alert(result);
+   
+       		document.getElementById('trucktxt').value = result;		
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+	
+		var a ;
+
+		function getcarD()
+	{
+	 sybex.getCarQT(function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+   		 a = result;
+       		document.getElementById('cartxt').value = a;
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+	
+	var b;
+
+		function getbikeD()
+	{
+	 sybex.getBikeQT(function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+   		 b = result;
+       		document.getElementById('biketxt').value = b;
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+		
+		var c;
+		function getsuvD()
+	{
+	 sybex.getSuvQT(function(error,result){
+            if (!error) {
+             
+              
+      //alert(result);
+   		 c = result;
+       		document.getElementById('suvtxt').value = c;
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+
+
+		var back = document.getElementById('back');
+	back.addEventListener('click',function(){
+     	location.href = "Admin.html";
+     });
+	
+	
+
+getcarD();
+gettruckD();
+getbikeD();
+getsuvD();
+	
+	
+</script>
+</html>
