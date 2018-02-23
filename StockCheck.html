@@ -4,12 +4,11 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>MY LIB</title>
+        <title>INVENTORY MANAGEMENT</title>
      <script src="web3.js"></script>
      <script src="source.js"></script>
     </head>
 <body background="bgimage.jpg">
-			<center> <h1 style="color:chartreuse"><blink>DOSTRIX</blink></h1></center>
 			<center>
 			<h1 style="color:#E53935">Stock Maintenance Department </h1>
 			</center>
@@ -80,6 +79,7 @@
     });
    
     
+
 		var PRWC;
 		var FUEL;
 		var Break;
@@ -117,10 +117,13 @@
 	 document.getElementById('Status').value = "Stock is Not-Satisfied";
 	}
 	}
+
 	var RCK = document.getElementById('RCK');
     RCK.addEventListener('click', function () {
        Checking();
     });
+
+
 			RCK.onclick = setInterval(function () {
                                          Evaluate()
                                      
