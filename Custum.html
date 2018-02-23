@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>INVENTORY MANAGEMENT</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+     <script src="web3.js"></script>
+		<script src="source.js"></script>
+    </head>
+<body background="bgimage.jpg">
+		<center> <h1 style="color:chartreuse"><blink>DOSTRIX</blink></h1></center>
+
+		<center>
+			<center> <h1 style="color:chartreuse">PURCHASED DETAILS</h1></center>
+
+		<form>
+		<table border="1">
+		<tr><td style="color:#F4FF81">ENTER THE CUTOMER ADDRESS:</td><td><input type="text" id="cusadd" ></td></tr>
+		<tr><td style="color:#F4FF81">CLICK TO VIEW THE DETAILS:</td><td><input type="button" id="view" value="VIEW" ></td></tr>
+		<tr><td style="color:#F4FF81">PRODUCT NAME:</td><td><input type="text"  id="pname"  ></td></tr>
+		<tr><td style="color:#F4FF81">VENDOR ADDRESS:</td><td><input type="text"  id="vendor"  ></td></tr>
+		<tr><td style="color:#F4FF81">PRODUCT QUANTITY:</td><td><input type="text"  id="QTY"  ></td></tr>
+		<tr><td style="color:#F4FF81">PRICE IN DTX TOKEN AMOUNT:</td><td><input type="text"  id="token"  ></td></tr>		
+		</table>
+		</form>
+		<center>
+		<from>
+		<table border="1">
+		<tr><td style="color:#F4FF81">BACK TO ADMIN PAGE:</td><td><input type="button" id="back" value="BACK"></td></tr>
+		</table>
+		</form>
+		</center>
+</body>
+
+	<script>
+		function MoreD()
+	{
+	var SNO = document.getElementById('cusadd').value;
+	
+	sybex.CUSD(SNO,function(error,result){
+            if (!error) {
+             
+              
+     // alert(result);
+       				
+		document.getElementById('pname').value = result[1];
+		document.getElementById('vendor').value = result[3];
+		document.getElementById('QTY').value = result[5];
+		document.getElementById('token').value = result[4];
+		
+                             
+            } else {
+     
+             
+        alert(result);
+        
+            }
+        });
+	}
+
+		var view = document.getElementById('view');
+	view.addEventListener('click',function(){
+      MoreD();
+     });
+		var back = document.getElementById('back');
+	back.addEventListener('click',function(){
+     	location.href = "Admin.html";
+     });
+</script>
+</html>
