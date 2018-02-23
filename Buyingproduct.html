@@ -40,32 +40,7 @@
 		</form>
 	</center>
 
-	<center>
-		<h1 style="color:#E53935"> Check The Account Balance</h1>
-		<form>
-			<table border="1">
 	
-				<tr>
-					<td style="color:#F4FF81">ACCOUNT ADDRESS OF CUSTOMER:</td>
-					<td>
-						<input type="text" id="ADDRD" />
-					</td>
-				</tr>
-				<td style="color:#F4FF81">CLICK TO SHOW:</td>
-				<td>
-					<input type="button" value="Check" id="Check" />
-				</td>
-				</tr>
-				<tr>
-					<td style="color:#F4FF81">TOKEN AMOUNT:</td>
-					<td>
-						<input type="text" id="Token" />
-					</td>
-				</tr>
-				</tr>
-			</table>
-		</form>
-	</center>
 	
 </body>
 <script>
@@ -147,20 +122,8 @@
 	up.addEventListener('click',function(){
        	 getPurchase();
 	});
-	function Checkbalance() {
-		var ADDRD = document.getElementById("ADDRD").value;
-		sybex.balanceOf(ADDRD, function (error, result) {
-			if (!error) {
-				document.getElementById("Token").value = result;
-			} else {
-				alert(result);
-			}
-		});
-	}
-	var Check = document.getElementById("Check");
-	Check.addEventListener('click', function () {
-		Checkbalance();
-	});
+
+
 </script>
 	
 </html>
