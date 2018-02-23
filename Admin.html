@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>MY LIB</title>
+        <title>INVENTORY MANAGEMENT</title>
      <script src="web3.js"></script>
     </head>
 <body background="bgimage.jpg">
@@ -12,14 +12,16 @@
 	<table border="1">
       <tr><td style="color:#F4FF81">USERNAME:</td><td><input type="text" placeholder="name" id="UN"/></td></tr>
       <tr><td style="color:#F4FF81">PASSWORD:</td><td><input type="password" placeholder="password" id="PS"/></td></tr>
-      <tr><td><input type="button" value="Login" id="butV"/></td></tr>
+      <tr><td style="color:#F4FF81">PROCEED TO PRODUCTION:</td><td><input type="button" id="pro" value="MANUFACTURING"/></td><tr>
+      <tr><td style="color:#F4FF81">VIEW TO PRODUCT DETAILS:</td><td><input type="button" id="products"  value="PRODUCTS"/></td><tr>
+     <tr><td style="color:#F4FF81">VIEW TO CUSTOMER DETAILS:</td><td><input type="button" id="Customer" value="CUSTOMER DETAILS"/></td><tr>
 	</table>
     	</form>
 	</center>
 </body>
 
 <script>
-	document.getElementById("butV").onclick = function () {
+	document.getElementById("pro").onclick = function () {
 	var UNN = "admin";
 	var PAS = "1234";
 	var UN = document.forms[0].querySelectorAll('input')[0].value;
@@ -35,6 +37,57 @@
 		}
         
     };
-	
+
+	document.getElementById("products").onclick = function () {
+	var UNN = "admin";
+	var PAS = "1234";
+	var UN = document.forms[0].querySelectorAll('input')[0].value;
+	var PS = document.forms[0].querySelectorAll('input')[1].value;
+        
+	if(UNN == UN && PAS == PS)
+		{
+		location.href = "ProD.html";
+		}
+		else
+		{
+		alert("Error");
+		}
+        
+    };
+
+
+		document.getElementById("pro").onclick = function () {
+	var UNN = "admin";
+	var PAS = "1234";
+	var UN = document.forms[0].querySelectorAll('input')[0].value;
+	var PS = document.forms[0].querySelectorAll('input')[1].value;
+        
+	if(UNN == UN && PAS == PS)
+		{
+		location.href = "Planning.html";
+		}
+		else
+		{
+		alert("Error");
+		}
+        
+    };	
+
+	document.getElementById("Customer").onclick = function () {
+	var UNN = "admin";
+	var PAS = "1234";
+	var UN = document.forms[0].querySelectorAll('input')[0].value;
+	var PS = document.forms[0].querySelectorAll('input')[1].value;
+        
+	if(UNN == UN && PAS == PS)
+		{
+		location.href = "Custum.html";
+		}
+		else
+		{
+		alert("Error");
+		}
+        
+    };	
 </script>
 </html>
