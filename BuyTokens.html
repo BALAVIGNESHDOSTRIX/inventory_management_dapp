@@ -3,12 +3,13 @@
     <head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>MY LIB</title>
+		<title>INVENTORY MANAGEMENT</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	 <script src="web3.js"></script>
 	<script src="source.js"></script>
     </head>
 <body background="bgimage.jpg">
+	<center> <h1 style="color:chartreuse"><blink>DOSTRIX</blink></h1></center>
 	<center>
 	 <h1 style="color:#E53935"> DostriXToken</h1>
 	<form>
@@ -32,6 +33,14 @@
 	</table>
 	</form>
 	</center>
+		<center>
+			<h1 style="color:#E53935">Proceed to DostrixToken Page </h1>
+			<form>
+			<table border="1">
+			<tr><td style="color:#F4FF81">Back to Product Buy</td><td><input value="BACK" type="button" id="ongreen"/></td></tr>
+			</table>
+			</form>
+		</center>
 </body>
 
 	<script>
@@ -47,7 +56,6 @@
 	BUTS.addEventListener('click',function(){
        Tokens();
      });
-
 		function Checkbalance()
 		{
 		var ADDRD = document.getElementById("ADDRD").value;
@@ -67,13 +75,17 @@
             }
         });
 		}
-
 		
 		
-
 		var Check = document.getElementById("Check");
 	Check.addEventListener('click',function(){
        Checkbalance();
+	
+     });
+	 
+	var ongreen = document.getElementById("ongreen");
+	ongreen.addEventListener('click',function(){
+      location.href = "Buyingproduct.html";
 	
      });
 	</script>
